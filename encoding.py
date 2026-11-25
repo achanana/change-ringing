@@ -19,7 +19,7 @@ class ErinTriplesEncodings:
                              min_clumps=DEFAULT_MIN_CLUMPS):
         knf = KNF()
 
-        # If an in edge is used, one of the corresponding out edges must be
+        # If an in-edge is used, one of the corresponding out-edges must be
         # used, and vice-a-versa
         for state in range(self.g.graph.num_states):
             in_edges = self.g.edges_into_state(state)
@@ -43,7 +43,7 @@ class ErinTriplesEncodings:
                             min_clumps=DEFAULT_MIN_CLUMPS):
         knf = KNF()
 
-        # If an in edge of one row is used, no out edge of any other row in the
+        # If an in-edge of one row is used, no out-edge of any other row in the
         # same clump may be used
         for rows in self.g.graph.clump_states:
             for in_row, out_row in permutations(rows, 2):
@@ -61,7 +61,7 @@ class ErinTriplesEncodings:
         return knf
 
     def _add_clump_flow_clauses(self, knf):
-        """A used in edge requires an out edge of its clump, and vice versa."""
+        """A used in-edge requires an out-edge of its clump, and vice versa."""
         for clump in range(self.g.graph.num_clumps):
             ins = [self.vpool.id(e) for e in self.g.edges_into_clump(clump)]
             outs = [self.vpool.id(e) for e in self.g.edges_out_of_clump(clump)]
@@ -73,10 +73,10 @@ class ErinTriplesEncodings:
     def _add_cycle_constraints(self, knf, require_every_clump, min_clumps):
         """Constraints shared by all encodings.
 
-        One cycle passes through rounds. If ``require_every_clump``, every
-        clump is entered and left exactly once (``min_clumps`` is ignored).
-        Otherwise each clump is used at most once and at least ``min_clumps``
-        of them are entered.
+        One cycle passes through rounds. If ``require_every_clump`` is True,
+        every clump is entered and left exactly once (``min_clumps`` is
+        ignored). Otherwise each clump is used at most once and at least
+        ``min_clumps`` of them are entered.
         """
         for clump in range(self.g.graph.num_clumps):
             in_edges = self.g.edges_into_clump(clump)
