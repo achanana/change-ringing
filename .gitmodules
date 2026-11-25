@@ -1,0 +1,4 @@
+[submodule "third_party/Cardinality-CDCL"]
+	path = third_party/Cardinality-CDCL
+	url = https://github.com/jreeves3/Cardinality-CDCL
+	ignore = untracked

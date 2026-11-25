@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+
+# Editor swap, undo and backup files
+*.sw?
+*.un~
+*~
+
+# Generated formulas and solver output
+*.knf
+*.cnf
+*.drat
+*.log
